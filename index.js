@@ -2,7 +2,7 @@ require('dotenv').config()
 var Hapi = require('hapi');
 var server = new Hapi.Server()
 server.connection({
-  'host': 'glacial-sierra-23235.herokuapp.com' || 'localhost',
+  // 'host': 'glacial-sierra-23235.herokuapp.com' || 'localhost',
   'port': process.env.PORT || 3000
 });
 var socketio = require("socket.io");
