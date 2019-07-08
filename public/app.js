@@ -31,8 +31,6 @@ var VideoChat = {
     // Now we're ready to join the chat room.
     VideoChat.socket.emit('join', 'test');
     VideoChat.socket.on('ready', VideoChat.readyToCall);
-    VideoChat.callButton.removeAttribute('disabled');// temporary
-    console.log("already called");
     VideoChat.socket.on('offer', VideoChat.onOffer);
   },
 
@@ -45,7 +43,7 @@ var VideoChat = {
 
   // When we are ready to call, enable the Call button.
   readyToCall: function(event){
-    alert("hello");
+    console.log("already call");
     VideoChat.callButton.removeAttribute('disabled');
   },
 
@@ -149,7 +147,7 @@ var VideoChat = {
   // browser, add it to the other video element on the page.
   onAddStream: function(event){
     VideoChat.remoteVideo = document.getElementById('remote-video');
-    VideoChat.remoteVideo.src = window.URL.createObjectURL(event.stream);
+    VideoChat.remoteVideo.srcObject = (event.stream);
   }
 };
 

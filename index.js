@@ -20,19 +20,25 @@ server.route({
 
 // When a socket connects, set up the specific listeners we will use.
 io.on('connection', function(socket){
+  console.log("LOG: just connected: " + socket.id);
   // When a client tries to join a room, only allow them if they are first or
   // second in the room. Otherwise it is full.
   socket.on('join', function(room){
     var clients = io.sockets.adapter.rooms[room];
-    var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
+    console.log('clients: ', clients);
+    var numClients = (typeof clients !== 'undefined') ? (Object.values(clients)[1]) : 0;
+    console.log("numClients: ", numClients);
     if(numClients == 0){
+      console.log('[socket]','join room [0]:',room);
       socket.join(room);
     }else if(numClients == 1){
+      console.log('[socket]','join room [1]:',room)
       socket.join(room);
       // When the client is second to join the room, both clients are ready.
       socket.emit('ready', room);
       socket.broadcast.emit('ready', room);
     }else{
+      console.log('[socket]','full room :',room)
       socket.emit('full', room);
     }
   });
