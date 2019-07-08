@@ -31,6 +31,8 @@ var VideoChat = {
     // Now we're ready to join the chat room.
     VideoChat.socket.emit('join', 'test');
     VideoChat.socket.on('ready', VideoChat.readyToCall);
+    VideoChat.callButton.removeAttribute('disabled');// temporary
+    console.log("already called");
     VideoChat.socket.on('offer', VideoChat.onOffer);
   },
 
@@ -43,6 +45,7 @@ var VideoChat = {
 
   // When we are ready to call, enable the Call button.
   readyToCall: function(event){
+    alert("hello");
     VideoChat.callButton.removeAttribute('disabled');
   },
 
