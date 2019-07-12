@@ -42,7 +42,7 @@ var VideoChat = {
   },
 
   // When we are ready to call, enable the Call button.
-  readyToCall: function(event){
+  readyToCall: function(event){noted
     console.log("already call");
     VideoChat.callButton.removeAttribute('disabled');
   },
@@ -52,6 +52,7 @@ var VideoChat = {
   startCall: function(event){
     VideoChat.socket.on('token', VideoChat.onToken(VideoChat.createOffer));
     VideoChat.socket.emit('token');
+    VideoChat.callButton.setAttribute('disabled', 'disabled');
   },
 
   // When we receive the ephemeral token back from the server.
